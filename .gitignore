@@ -1,8 +1,2 @@
-# Build and Cache Folders
-zig-out
-.zig-cache
-*.exe
-.DS-Store
-
-external/SDL3
-*.obj
+/.vs
+/out

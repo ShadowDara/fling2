@@ -8,40 +8,47 @@
 #include <iostream>
 #include <cctype>
 
-// use namespace lexer
-// {
-    // Token-Typen
-    enum TokenType
+namespace fling
+{
+    namespace lexer
     {
-        Number,
-        Identifier,
-        Equals,
-        OpenParen,
-        CloseParen,
-        BinaryOperator,
-        Let,
-        Illegal
-    };
+        // Token-Typen
+        enum TokenType
+        {
+            Number,
+            Identifier,
 
-    // Token-Struktur
-    struct Token
-    {
-        std::string value;
-        TokenType type;
-    };
+            Let,
 
-    // Funktions-Deklarationen
-    std::string tokenTypeToString(TokenType type);
-    std::ostream &operator<<(std::ostream &os, const Token &token);
+            Equals,
+            OpenParen,
+            CloseParen,
+            BinaryOperator,
 
-    bool isAlpha(const std::string &src);
-    bool isAlpha(char c);
-    bool isInt(const std::string &str);
-    bool isInt(char c);
-    bool isSkippable(char c);
+            Illegal,
+            Eof, // Signal end of File
+        };
 
-    Token token(const std::string &value, TokenType type);
-    std::vector<Token> tokenize(const std::string &input);
+        // Token-Struktur
+        struct Token
+        {
+            std::string value;
+            TokenType type;
+        };
 
-    extern std::unordered_map<std::string, TokenType> KEYWORDS;
-// }
+        // Funktions-Deklarationen
+        std::string tokenTypeToString(TokenType type);
+        std::ostream &operator<<(std::ostream &os, const Token &token);
+
+        bool isAlpha(const std::string &src);
+        bool isAlpha(char c);
+        bool isInt(const std::string &str);
+        bool isInt(char c);
+        bool isSkippable(char c);
+
+        Token token(const std::string &value, TokenType type);
+        std::vector<Token> tokenize(const std::string &input);
+
+        extern std::unordered_map<std::string, TokenType> KEYWORDS;
+    } // namespace lexer
+} // namespace fling
