@@ -1,4 +1,5 @@
 // lexer.hpp
+
 #pragma once
 
 #include <string>

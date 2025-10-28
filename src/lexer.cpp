@@ -1,4 +1,5 @@
 // lexer.cpp
+
 #include "lexer.hpp"
 
 namespace fling

@@ -1,13 +1,16 @@
+// main.cpp
+
 #include "lexer.hpp"
 #include "parser.hpp"
 #include "ast.hpp"
+
 #include <iostream>
 #include <string>
 #include <cassert> // Für assert()
 
 using namespace fling;
-using namespace fling::lexer;
 using namespace fling::ast;
+using namespace fling::lexer;
 using namespace fling::parser;
 
     // Hilfsfunktion zum Testen von Tokens
