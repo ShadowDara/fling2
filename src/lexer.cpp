@@ -71,6 +71,7 @@ namespace fling
             return true;
         }
 
+		// Function to check if a character is an integer
         bool isInt(char c)
         {
             return std::isdigit(static_cast<unsigned char>(c));
