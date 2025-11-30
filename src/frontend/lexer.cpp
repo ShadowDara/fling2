@@ -6,7 +6,6 @@ namespace fling
 {
     namespace lexer
     {
-
         // Debug Printing
         std::string tokenTypeToString(TokenType type)
         {
@@ -91,7 +90,10 @@ namespace fling
 
         // Keywords
         std::unordered_map<std::string, TokenType> KEYWORDS = {
-            {"let", TokenType::Let},
+            {
+                "let",
+                TokenType::Let
+            },
         };
 
         // Tokenizer
@@ -121,8 +123,17 @@ namespace fling
                     i++;
                     break;
                 case '+':
+                    tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
+                    i++;
+                    break;
                 case '-':
+                    tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
+                    i++;
+                    break;
                 case '*':
+                    tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
+                    i++;
+                    break;
                 case '/':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
@@ -174,12 +185,12 @@ namespace fling
 
             tokens.push_back(token("EndOfFile", TokenType::Eof));
 
-            // Debug Output
-            std::cout << "Debug Tokens:" << std::endl;
-            for (const auto &tok : tokens)
-            {
-                std::cout << tok << std::endl;
-            }
+            // // Debug Output
+            // std::cout << "Debug Tokens:" << std::endl;
+            // for (const auto &tok : tokens)
+            // {
+            //     std::cout << tok << std::endl;
+            // }
 
             return tokens;
         }

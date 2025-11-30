@@ -12,7 +12,18 @@ endif()
 project ("fling-lang")
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (fling-lang "src/main.cpp" "src/ast.cpp" "src/ast.hpp" "src/lexer.cpp" "src/lexer.hpp" "src/parser.cpp" "src/parser.hpp")
+add_executable (
+    fling-lang 
+    "src/main.cpp"
+
+    "src/frontend/ast.cpp"
+    "src/frontend/ast.hpp"
+    "src/frontend/lexer.cpp"
+    
+    "src/frontend/lexer.hpp"
+    "src/frontend/parser.cpp"
+    "src/frontend/parser.hpp"
+)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET fling-lang PROPERTY CXX_STANDARD 20)
