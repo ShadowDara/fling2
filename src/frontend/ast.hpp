@@ -36,6 +36,7 @@ namespace fling
         {
             Program,
             NumericLiteral,
+			NullLiteral,
             Identifier,
             BinaryExpr,
             // CallExpr,
@@ -75,13 +76,14 @@ namespace fling
                 for (auto *stmt : body)
                 {
                     out += stmt->toString(indent + 2);
+					// Add newline After each statement
                     out += "\n";
                 }
 
                 return out;
             }
         };
-
+        
         // Ausdruck
         struct Expr : Stmt
         {
@@ -108,7 +110,9 @@ namespace fling
                 out += indentStr(indent + 2) + "Left:\n";
                 out += left->toString(indent + 4) + "\n";
                 out += indentStr(indent + 2) + "Right:\n";
-                out += right->toString(indent + 4);
+                out += right->toString(indent + 4) + "\n";
+                out += indentStr(indent + 2) + "Binary Operator:\n";
+				out += indentStr(indent + 4) + callculation_operator;
                 return out;
             }
         };
@@ -137,6 +141,19 @@ namespace fling
             {
                 return indentStr(indent) + "NumericLiteral(" + std::to_string(value) + ")";
             }
+        };
+
+		// Null Literal
+        struct NullLiteral : Expr
+        {
+            NodeType kind = NodeType::NullLiteral;
+            std::string value = "null";
+
+            // toString Function
+            std::string toString(int indent = 0) const override
+            {
+                return indentStr(indent) + "NullLiteral";
+			}
         };
 
         // for toString

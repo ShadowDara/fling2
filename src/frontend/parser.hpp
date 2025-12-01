@@ -46,6 +46,15 @@ namespace fling
             fling::lexer::Token eat();
 
             /**
+             * Function to expect a Token of a specific Type
+             * 
+             * @param TokenType which should be expected
+             * @param string for any additional Error Message
+             * @return Returns the expected Token
+			 */
+            fling::lexer::Token expect(fling::lexer::TokenType type, std::string any);
+
+            /**
              * Function to parse a statement
              * 
              * @return Returns a statement from the source Code
@@ -65,6 +74,13 @@ namespace fling
              * @return an Additive Expression from the current Token
              */
             fling::ast::Expr *parse_additive_expr();
+
+            /**
+             * Function to parse a multiplicative Expression
+             * 
+             * @return Returns a Multiplicative Expression from the current Token
+			 */
+            fling::ast::Expr* parse_multiplicitave_expr();
 
             /**
              * Function to parse a float Value and convert it to a String

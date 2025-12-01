@@ -22,6 +22,7 @@ namespace fling
          */
         enum TokenType
         {
+            Null,
             Number,
             Identifier,
 

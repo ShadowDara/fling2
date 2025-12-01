@@ -94,6 +94,10 @@ namespace fling
                 "let",
                 TokenType::Let
             },
+            {
+                "null",
+				TokenType::Null
+            },
         };
 
         // Tokenizer
@@ -114,30 +118,50 @@ namespace fling
 
                 switch (current)
                 {
+                
+			    // Opening Parenthesis
                 case '(':
                     tokens.push_back(token("(", TokenType::OpenParen));
                     i++;
                     break;
+                
+				// Closing Parenthesis
                 case ')':
                     tokens.push_back(token(")", TokenType::CloseParen));
                     i++;
                     break;
+                
+				// Addition Operator
                 case '+':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
+                
+				// Subtraction Operator
                 case '-':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
+                
+			    // Multiplication Operator
                 case '*':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
+				
+                // Division Operator
                 case '/':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
+				
+                // Modulo Operator
+                case '%':
+                    tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
+                    i++;
+                    break;
+                
+			    // Assignment Operator
                 case '=':
                     tokens.push_back(token("=", TokenType::Equals));
                     i++;
@@ -164,6 +188,7 @@ namespace fling
                             i++;
                         }
 
+                        // Check if its in the Keyword List
                         if (KEYWORDS.find(ident) != KEYWORDS.end())
                         {
                             tokens.push_back(token(ident, KEYWORDS[ident]));

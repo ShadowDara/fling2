@@ -18,11 +18,18 @@ add_executable (
 
     "src/frontend/ast.cpp"
     "src/frontend/ast.hpp"
+
     "src/frontend/lexer.cpp"
-    
     "src/frontend/lexer.hpp"
+
     "src/frontend/parser.cpp"
     "src/frontend/parser.hpp"
+
+    "src/runtime/values.hpp"
+    "src/runtime/values.cpp"
+
+    "src/runtime/interpreter.hpp"
+    "src/runtime/interpreter.cpp"
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

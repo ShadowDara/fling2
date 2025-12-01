@@ -36,6 +36,24 @@ namespace fling
             return prev;
         }
 
+		// Function to expect a specific Token Type
+        fling::lexer::Token Parser::expect(fling::lexer::TokenType type, string err)
+        {
+			fling::lexer::Token tk = this->eat();
+			
+			// Exit the program if the expected Token Type is not found
+            if (tk.type != type)
+            {
+                cout << "Parser Error - Unexpected Token found: \n" << err
+                     << tk.value << " - Expecting: "
+                     << fling::lexer::tokenTypeToString(type) << endl;
+                cout << "Exiting Parser..." << endl;
+                exit(1);
+            }
+            
+			return tk;
+        }
+
         // Funktion to parse a Statement
         fling::ast::Stmt *Parser::parse_stmt()
         {
@@ -54,12 +72,37 @@ namespace fling
         // Function to parse an additive Expression
         fling::ast::Expr *Parser::parse_additive_expr()
         {
-            fling::ast::Expr *left = parse_primary_expr();
+            fling::ast::Expr *left = parse_multiplicitave_expr();
 
+			// For Addition and Subtraction
             while (this->at().value == "+" || this->at().value == "-")
             {
                 std::string callculation_operator = this->eat().value;
                 fling::ast::Expr *right = this->parse_primary_expr();
+
+                auto leftnew = new fling::ast::BinaryExpr();
+                leftnew->left = left;
+                leftnew->right = right;
+                leftnew->callculation_operator = callculation_operator;
+
+                left = leftnew;
+            }
+
+            return left;
+        }
+
+        // Function to parse an multiplicitave Expression
+        fling::ast::Expr* Parser::parse_multiplicitave_expr()
+        {
+            fling::ast::Expr* left = parse_primary_expr();
+
+			// For Division, Multiplication and Modulo
+            while
+            (
+                this->at().value == "/" || this->at().value == "*" || this->at().value == "%"
+            ){
+                std::string callculation_operator = this->eat().value;
+                fling::ast::Expr* right = this->parse_multiplicitave_expr();
 
                 auto leftnew = new fling::ast::BinaryExpr();
                 leftnew->left = left;
@@ -103,6 +146,17 @@ namespace fling
                 return id; // implicit upcast to Expr*
             }
 
+            // Null Type
+            case fling::lexer::TokenType::Null:
+            {
+				// Remove the null Token
+                this->eat();
+                
+				// Create a new NullLiteral Node
+                auto* id = new fling::ast::NullLiteral;
+                return id;
+            }
+
             // Number Type
             case fling::lexer::TokenType::Number:
             {
@@ -110,6 +164,18 @@ namespace fling
                 id->value = parse_float(this->eat().value); // token.value is the Nummeric Literal value
 
                 return id; // implicit upcast to Expr*
+            }
+
+			// Opening Parenthesis Type
+            case fling::lexer::TokenType::OpenParen:
+            {
+                this->eat(); // Eat the opening Token
+				auto* expr = this->parse_expr();
+				this->expect(
+                    fling::lexer::TokenType::CloseParen,
+                    "Unexpected Token found inside parenthesised expression. Expected closing parenthesis"
+                ); // Eat the closing Parenthesis
+				return expr; // Return the inner Expression
             }
 
             // Default Type for Unexpected Tokens
