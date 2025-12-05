@@ -70,7 +70,7 @@ namespace fling
             return true;
         }
 
-		// Function to check if a character is an integer
+        // Function to check if a character is an integer
         bool isInt(char c)
         {
             return std::isdigit(static_cast<unsigned char>(c));
@@ -90,14 +90,10 @@ namespace fling
 
         // Keywords
         std::unordered_map<std::string, TokenType> KEYWORDS = {
-            {
-                "let",
-                TokenType::Let
-            },
-            {
-                "null",
-				TokenType::Null
-            },
+            {"let",
+             TokenType::Let},
+            {"null",
+             TokenType::Null},
         };
 
         // Tokenizer
@@ -118,50 +114,50 @@ namespace fling
 
                 switch (current)
                 {
-                
-			    // Opening Parenthesis
+
+                // Opening Parenthesis
                 case '(':
                     tokens.push_back(token("(", TokenType::OpenParen));
                     i++;
                     break;
-                
-				// Closing Parenthesis
+
+                // Closing Parenthesis
                 case ')':
                     tokens.push_back(token(")", TokenType::CloseParen));
                     i++;
                     break;
-                
-				// Addition Operator
+
+                // Addition Operator
                 case '+':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
-                
-				// Subtraction Operator
+
+                // Subtraction Operator
                 case '-':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
-                
-			    // Multiplication Operator
+
+                // Multiplication Operator
                 case '*':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
-				
+
                 // Division Operator
                 case '/':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
-				
+
                 // Modulo Operator
                 case '%':
                     tokens.push_back(token(std::string(1, current), TokenType::BinaryOperator));
                     i++;
                     break;
-                
-			    // Assignment Operator
+
+                // Assignment Operator
                 case '=':
                     tokens.push_back(token("=", TokenType::Equals));
                     i++;
@@ -201,7 +197,7 @@ namespace fling
                     else
                     {
                         std::cout << "Unrecognized character in source: " << current << std::endl;
-                        std::abort();
+                        core::Abort();
                     }
 
                     break;

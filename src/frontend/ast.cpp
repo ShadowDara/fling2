@@ -2,8 +2,10 @@
 
 #include "ast.hpp"
 
-namespace fling {
-    namespace ast {
+namespace fling
+{
+    namespace ast
+    {
 
-	} // namespace ast
+    } // namespace ast
 } // namespace fling

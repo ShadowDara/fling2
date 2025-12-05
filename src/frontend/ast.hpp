@@ -12,7 +12,7 @@
 #include <string_view>
 #include <vector>
 #include <string>
-#include <ostream> 
+#include <ostream>
 
 namespace fling
 {
@@ -36,7 +36,7 @@ namespace fling
         {
             Program,
             NumericLiteral,
-			NullLiteral,
+            NullLiteral,
             Identifier,
             BinaryExpr,
             // CallExpr,
@@ -46,7 +46,7 @@ namespace fling
 
         /**
          * Statement a Basestructure for the abstract Syntax Tree
-         * 
+         *
          * @param Nodetype
          */
         struct Stmt
@@ -76,14 +76,14 @@ namespace fling
                 for (auto *stmt : body)
                 {
                     out += stmt->toString(indent + 2);
-					// Add newline After each statement
+                    // Add newline After each statement
                     out += "\n";
                 }
 
                 return out;
             }
         };
-        
+
         // Ausdruck
         struct Expr : Stmt
         {
@@ -112,7 +112,7 @@ namespace fling
                 out += indentStr(indent + 2) + "Right:\n";
                 out += right->toString(indent + 4) + "\n";
                 out += indentStr(indent + 2) + "Binary Operator:\n";
-				out += indentStr(indent + 4) + callculation_operator;
+                out += indentStr(indent + 4) + callculation_operator;
                 return out;
             }
         };
@@ -143,7 +143,7 @@ namespace fling
             }
         };
 
-		// Null Literal
+        // Null Literal
         struct NullLiteral : Expr
         {
             NodeType kind = NodeType::NullLiteral;
@@ -153,7 +153,7 @@ namespace fling
             std::string toString(int indent = 0) const override
             {
                 return indentStr(indent) + "NullLiteral";
-			}
+            }
         };
 
         // for toString

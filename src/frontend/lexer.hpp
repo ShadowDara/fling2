@@ -13,6 +13,8 @@
 #include <iostream>
 #include <cctype>
 
+#include "../core.hpp"
+
 namespace fling
 {
     namespace lexer
@@ -39,7 +41,7 @@ namespace fling
 
         /**
          * Token Struct Value
-         * 
+         *
          * @param string: value
          * @param TokenType type
          */
@@ -51,7 +53,7 @@ namespace fling
 
         /**
          * Funktion to turn a Tokentype to a String
-         * 
+         *
          * @param TokenType as input argument
          * @return string from the TokenType
          */
@@ -61,9 +63,9 @@ namespace fling
 
         /**
          * Check if a std::string is alphabetic
-         * 
+         *
          * INFO: The Function is overloaded
-         * 
+         *
          * @param std::string as the source which need to be checked
          * @return true if the string is alphabetic
          */
@@ -71,25 +73,25 @@ namespace fling
 
         /**
          * Check if a single char is alphabetic
-         * 
+         *
          * INFO: The Function is overloaded
-         * 
+         *
          * @param char which should be checked
          * @return true if the char is alphabetic
          */
         bool isAlpha(char c);
-        
+
         /**
          * Check if a std::string is an Integer
-         * 
+         *
          * @param std::string which should be checked
          * @return true if the input is an Integer
          */
         bool isInt(const std::string &str);
-        
+
         /**
          * Chefck if a char is an valid Integer
-         * 
+         *
          * @param char which should be check
          * @return true if the char is an valid Integer
          */
@@ -97,7 +99,7 @@ namespace fling
 
         /**
          * Check if a character is valid Whitespace
-         * 
+         *
          * @param char
          * @return true if the character is a whitespace
          */
@@ -105,7 +107,7 @@ namespace fling
 
         /**
          * Function which generates and returns a new Token from both Input Values
-         * 
+         *
          * @param std::string, value for the Token
          * @param TokenType
          * @return A Token with both values
@@ -114,7 +116,7 @@ namespace fling
 
         /**
          * Tokenize Function which tokenises the source Code to an Array of Tokens
-         * 
+         *
          * @param std::string, the Input Code
          * @return an Vector of Tokens
          */

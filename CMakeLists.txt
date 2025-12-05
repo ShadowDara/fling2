@@ -30,6 +30,9 @@ add_executable (
 
     "src/runtime/interpreter.hpp"
     "src/runtime/interpreter.cpp"
+    
+    "src/core.cpp"
+    "src/core.hpp"
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

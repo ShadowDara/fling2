@@ -7,7 +7,7 @@ using namespace std;
 namespace fling
 {
     namespace parser
-    { 
+    {
         // match the namespace in the header
 
         // Implementation of Parser member functions
@@ -36,22 +36,23 @@ namespace fling
             return prev;
         }
 
-		// Function to expect a specific Token Type
+        // Function to expect a specific Token Type
         fling::lexer::Token Parser::expect(fling::lexer::TokenType type, string err)
         {
-			fling::lexer::Token tk = this->eat();
-			
-			// Exit the program if the expected Token Type is not found
+            fling::lexer::Token tk = this->eat();
+
+            // Exit the program if the expected Token Type is not found
             if (tk.type != type)
             {
-                cout << "Parser Error - Unexpected Token found: \n" << err
+                cout << "Parser Error - Unexpected Token found: \n"
+                     << err
                      << tk.value << " - Expecting: "
                      << fling::lexer::tokenTypeToString(type) << endl;
                 cout << "Exiting Parser..." << endl;
-                exit(1);
+                core::Exit(1);
             }
-            
-			return tk;
+
+            return tk;
         }
 
         // Funktion to parse a Statement
@@ -74,7 +75,7 @@ namespace fling
         {
             fling::ast::Expr *left = parse_multiplicitave_expr();
 
-			// For Addition and Subtraction
+            // For Addition and Subtraction
             while (this->at().value == "+" || this->at().value == "-")
             {
                 std::string callculation_operator = this->eat().value;
@@ -92,17 +93,16 @@ namespace fling
         }
 
         // Function to parse an multiplicitave Expression
-        fling::ast::Expr* Parser::parse_multiplicitave_expr()
+        fling::ast::Expr *Parser::parse_multiplicitave_expr()
         {
-            fling::ast::Expr* left = parse_primary_expr();
+            fling::ast::Expr *left = parse_primary_expr();
 
-			// For Division, Multiplication and Modulo
-            while
-            (
-                this->at().value == "/" || this->at().value == "*" || this->at().value == "%"
-            ){
+            // For Division, Multiplication and Modulo
+            while (
+                this->at().value == "/" || this->at().value == "*" || this->at().value == "%")
+            {
                 std::string callculation_operator = this->eat().value;
-                fling::ast::Expr* right = this->parse_multiplicitave_expr();
+                fling::ast::Expr *right = this->parse_multiplicitave_expr();
 
                 auto leftnew = new fling::ast::BinaryExpr();
                 leftnew->left = left;
@@ -149,11 +149,11 @@ namespace fling
             // Null Type
             case fling::lexer::TokenType::Null:
             {
-				// Remove the null Token
+                // Remove the null Token
                 this->eat();
-                
-				// Create a new NullLiteral Node
-                auto* id = new fling::ast::NullLiteral;
+
+                // Create a new NullLiteral Node
+                auto *id = new fling::ast::NullLiteral;
                 return id;
             }
 
@@ -166,16 +166,15 @@ namespace fling
                 return id; // implicit upcast to Expr*
             }
 
-			// Opening Parenthesis Type
+            // Opening Parenthesis Type
             case fling::lexer::TokenType::OpenParen:
             {
                 this->eat(); // Eat the opening Token
-				auto* expr = this->parse_expr();
-				this->expect(
+                auto *expr = this->parse_expr();
+                this->expect(
                     fling::lexer::TokenType::CloseParen,
-                    "Unexpected Token found inside parenthesised expression. Expected closing parenthesis"
-                ); // Eat the closing Parenthesis
-				return expr; // Return the inner Expression
+                    "Unexpected Token found inside parenthesised expression. Expected closing parenthesis"); // Eat the closing Parenthesis
+                return expr;                                                                                 // Return the inner Expression
             }
 
             // Default Type for Unexpected Tokens

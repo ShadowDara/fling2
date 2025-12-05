@@ -3,6 +3,7 @@
 #include "frontend/lexer.hpp"
 #include "frontend/parser.hpp"
 #include "frontend/ast.hpp"
+#include "runtime/interpreter.hpp"
 
 #include <iostream>
 #include <string>
@@ -12,6 +13,9 @@ using namespace fling;
 using namespace fling::ast;
 using namespace fling::lexer;
 using namespace fling::parser;
+using namespace fling::runtime;
+
+using namespace std;
 
 // Hilfsfunktion zum Testen von Tokens
 void assertToken(const lexer::Token &token, const std::string &expectedValue, lexer::TokenType expectedType)
@@ -81,12 +85,17 @@ int main()
     std::cout << "\nNow the REPL" << std::endl;
 
     std::string source;
-    Parser* parser = new Parser();
+    Parser *parser = new Parser();
 
-    while (true) {
+    while (true)
+    {
         std::getline(std::cin, source);
+
+        // Produce AST from source Code
         Program program = parser->produceAST(source);
         std::cout << program << std::endl;
+
+        RuntimeVal *result = evaluate(&program);
     }
 
     return 0;
