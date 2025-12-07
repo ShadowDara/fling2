@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#include "../core.hpp"
+#include "dcorelib/dcorelib.h"
 #include "../frontend/ast.hpp"
 #include "values.hpp"
 

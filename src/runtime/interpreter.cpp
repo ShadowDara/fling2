@@ -9,10 +9,16 @@ namespace fling
     namespace runtime
     {
         // Function to evaluate a Program
-        runtime::RuntimeVal *evaluate_program(ast::Program *program) {}
+        runtime::RuntimeVal *evaluate_program(ast::Program *program)
+        {
+            return nullptr;
+        }
 
         // Function to evaluate a Binary Expression
-        runtime::RuntimeVal *evaluate_binary_expr(ast::BinaryExpr *binop) {}
+        runtime::RuntimeVal *evaluate_binary_expr(ast::BinaryExpr *binop)
+        {
+            return nullptr;
+        }
 
         // Function to evaluate Source Code
         runtime::RuntimeVal *evaluate(ast::Stmt *astNode)
@@ -42,13 +48,14 @@ namespace fling
             // Program Node
             case ast::NodeType::Program:
             {
+				return evaluate_program(static_cast<ast::Program*>(astNode));
             }
 
             // Error Fallback
             default:
             {
                 cout << "Unknown AST Node Type in evaluate()" << endl;
-                core::Exit(1);
+                dcorelib::Exit(1);
             }
             }
         }

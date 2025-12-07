@@ -10,7 +10,8 @@
 
 #include "lexer.hpp"
 #include "ast.hpp"
-#include "../core.hpp"
+
+#include "dcorelib/dcorelib.h"
 
 namespace fling
 {

@@ -49,7 +49,7 @@ namespace fling
                      << tk.value << " - Expecting: "
                      << fling::lexer::tokenTypeToString(type) << endl;
                 cout << "Exiting Parser..." << endl;
-                core::Exit(1);
+                dcorelib::Exit(1);
             }
 
             return tk;

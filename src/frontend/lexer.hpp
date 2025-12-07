@@ -13,7 +13,7 @@
 #include <iostream>
 #include <cctype>
 
-#include "../core.hpp"
+#include "dcorelib/dcorelib.h"
 
 namespace fling
 {

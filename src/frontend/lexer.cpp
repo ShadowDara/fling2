@@ -90,10 +90,14 @@ namespace fling
 
         // Keywords
         std::unordered_map<std::string, TokenType> KEYWORDS = {
-            {"let",
-             TokenType::Let},
-            {"null",
-             TokenType::Null},
+            {
+                "let",
+                TokenType::Let
+            },
+            {
+                "null",
+                TokenType::Null
+            },
         };
 
         // Tokenizer
@@ -197,7 +201,7 @@ namespace fling
                     else
                     {
                         std::cout << "Unrecognized character in source: " << current << std::endl;
-                        core::Abort();
+                        dcorelib::Abort();
                     }
 
                     break;

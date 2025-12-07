@@ -11,6 +11,9 @@ endif()
 
 project ("fling-lang")
 
+# add my Corelib
+add_subdirectory(thirdparty/dcorelib)
+
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
 add_executable (
     fling-lang 
@@ -30,13 +33,12 @@ add_executable (
 
     "src/runtime/interpreter.hpp"
     "src/runtime/interpreter.cpp"
-    
-    "src/core.cpp"
-    "src/core.hpp"
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET fling-lang PROPERTY CXX_STANDARD 20)
 endif()
+
+target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE dcorelib)
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
